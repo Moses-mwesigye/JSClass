@@ -1,0 +1,57 @@
+extends layout.pug
+
+block content
+  .container.mt-4
+    .row.justify-content-center
+      .col-md-6
+        .card.border-success(style="background-color: rgba(24, 49, 53, 0.068);")
+          .card-header
+            h4(style="color: #0dcaf0;") Admin - Total Feeds
+          .card-body
+            table.table.table-bordered
+              thead
+                tr
+                  th(style="color: darkblue;") Total Feeds
+                  th(style="color: darkblue;") Kgs
+              tbody#feedsTableBody
+                // Rows will be filled by JS
+            // Total Kgs Display
+            .mt-3
+              h5(style="color: chartreuse;")
+                | Total Kgs: 
+                span#totalFeedsKgs 0
+  script.
+    // --- FEEDS TABLE (MongoDB, READ-ONLY) ---
+    async function loadFeedsTable() {
+      try {
+        const res = await fetch('/api/feeds');
+        if (!res.ok) throw new Error('Failed to fetch feeds');
+        const feeds = await res.json();
+        const tbody = document.getElementById('feedsTableBody');
+        tbody.innerHTML = '';
+        let totalKgs = 0;
+        if (!Array.isArray(feeds) || feeds.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="2" style="color:gray;">No feeds found</td></tr>`;
+        } else {
+          feeds.forEach(feed => {
+            let kgs = parseInt(feed.kgs) || 0;
+            totalKgs += kgs;
+            // Use a safer fallback for name
+            let feedName = (typeof feed.name === 'string' && feed.name.trim() && feed.name !== 'undefined') ? feed.name : 'Feed';
+            tbody.innerHTML += `
+              <tr id="feedRow${feed._id}">
+                <td><span class="feed-name">${feedName}</span></td>
+                <td><span class="feed-kgs">${kgs}</span></td>
+              </tr>
+            `;
+          });
+        }
+        document.getElementById('totalFeedsKgs').textContent = totalKgs;
+      } catch (err) {
+        alert('Error loading feeds: ' + err.message);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      loadFeedsTable();
+    });

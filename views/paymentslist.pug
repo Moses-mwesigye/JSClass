@@ -1,0 +1,25 @@
+extends layout.pug
+
+block content
+  .container.mt-5
+    h2.mb-4 All Payments
+    table.table.table-bordered.table-striped
+      thead
+        tr
+          th Name
+          th Amount
+          th Method
+          th Notes
+          th Date
+      tbody
+        if payments && payments.length
+          each payment in payments
+            tr
+              td= payment.payer || payment.name
+              td= payment.amount
+              td= payment.method
+              td= payment.notes
+              td= payment.date ? payment.date.toLocaleString() : ''
+        else
+          tr
+            td(colspan="5" class="text-center") No payments found.

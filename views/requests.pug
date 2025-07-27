@@ -1,0 +1,59 @@
+extends layout.pug
+
+block content
+  .container.mt-4
+    .row
+      .col-md-10
+        .card.border-primary(style="background-color: rgba(24, 49, 53, 0.068);")
+          .card-header
+            h4(style="color: crimson;") Pending chicken requests
+          .card-body
+            table.table.table-striped
+              thead
+                tr
+                  th(style="color: darkblue;") Date Submitted
+                  th(style="color: darkblue;") Total Chics
+                  th(style="color: darkblue;") Farmer
+                  th(style="color: darkblue;") Total Price
+                  th(style="color: darkblue;") Approved
+              tbody#pendingRequestsTableBody
+                // Filled by JS
+  script(src="css/bootstrap-5.3.6-dist/js/bootstrap.bundle.js")
+  script.
+    // Fetch and display requests from the backend (AdminRequest DB)
+    async function fetchRequests() {
+      try {
+        const res = await fetch('/admin/requests');
+        if (!res.ok) throw new Error('Failed to fetch requests');
+        return await res.json();
+      } catch (err) {
+        alert('Error loading requests: ' + err.message);
+        return [];
+      }
+    }
+
+    async function loadRequestsTable() {
+      const requests = await fetchRequests();
+      const tbody = document.getElementById('pendingRequestsTableBody');
+      tbody.innerHTML = '';
+      if (requests.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="color:gray;">No pending requests</td></tr>`;
+        return;
+      }
+      requests.forEach((r) => {
+        let totalPrice = (parseInt(r.chicks) || 0) * 1650;
+        tbody.innerHTML += `
+          <tr>
+            <td>${r.date}</td>
+            <td>${r.chicks}</td>
+            <td>${r.farmer}</td>
+            <td>${totalPrice}</td>
+            <td>${r.approved ? 'Yes' : 'No'}</td>
+          </tr>
+        `;
+      });
+    }
+
+    window.onload = function() {
+      loadRequestsTable();
+    };

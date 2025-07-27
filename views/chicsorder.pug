@@ -1,0 +1,20 @@
+
+ 
+extends layout.pug
+
+block content
+  h1(style="color: white;") Chics order form
+  form(action="/chicsorder" method='post')
+    label(for="qty" style="color: white;") Quantity
+    br
+    input(type="number" id="qty" name="qty" style="background: #222; color: #fff; border: 1px solid #888;")
+    br
+    br
+    label(for="broiler" style="color: white;") Broiler
+    input(type="radio" id="broiler" name="broiler")
+    br
+    label(for="layer" style="color: white;") Layer
+    input(type="radio" id="layer" name="layer")
+    br
+    br
+    input(type="submit" value="Submit" class="btn btn-info" style="color: #fff;")

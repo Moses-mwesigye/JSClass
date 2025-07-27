@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+      .container.mt-5
+        h2.mb-4 Users List
+        table.table.table-bordered.table-striped
+          thead
+            tr
+              th role 
+              th username
+              th age
+          tbody
+            if users && users.length
+              each user in users
+                tr
+                  td= user.role
+                  td= user.username
+                  td= user.Age  
+                
+            else
+              tr
+                td(colspan="3" class="text-center") No users found.

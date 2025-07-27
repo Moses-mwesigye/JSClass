@@ -1,0 +1,27 @@
+extends layout.pug
+
+block content
+  div(style='color: white; max-width: 400px; margin: 0 auto;')
+    h1 Customer form
+    form(action='/custreg' method='post')
+      label(for='fname') Customer First name:
+      br
+      input#fname(type='text', name='fname', style='background: #222; color: #fff; border: 1px solid #888;')
+      br
+      label(for='lname')  Customer Last name:
+      br
+      input#lname(type='text', name='lname', style='background: #222; color: #fff; border: 1px solid #888;')
+      br
+      label(for='lnin')  Customer NIN:
+      br
+      input#lname(type='text', name='lnin', style='background: #222; color: #fff; border: 1px solid #888;')
+      br
+      label(for='lnombre')  Customer phoneNumber:
+      br
+      input#lname(type='text', name='lnombre', style='background: #222; color: #fff; border: 1px solid #888;')
+      br
+      label(for='returning')  Returning farmer
+      input#broiler(type='checkbox', name='broiler')
+      br
+      br
+      input.btn.btn-info(type='submit', value='Submit', style='color: #fff;')
