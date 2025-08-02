@@ -2,11 +2,10 @@ const express = require('express')
 const router = express.Router()
 
 
-//middle ware for time loging of a specific route,, has to be above routes
-
-
 // soo important for picking data has to be above routes
 router.use(express.urlencoded({ extended: false }));
+
+
 
 //this covers static files like image paths specifically in the created public folder
 router.use(express.static('public'));
@@ -30,15 +29,6 @@ router.delete('/bomb', (req, res) => {
 // //query strings
 // router.get('/queryparams',(req, res)=>{
 //     res.send('my queryparams are:'+req.query.class+'and'+req.query.cohort)
-// })
-
-//serving html files
-router.get('/mwesigye', (req, res) => {
-    res.sendFile(__dirname + '/views/loginpage')
-});
-
-
-
 
 
 

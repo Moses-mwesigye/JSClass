@@ -2,13 +2,15 @@ extends layout.pug
 
 block content
       .container.mt-5
-        h2.mb-4 Users List
+      .card.border-info(style="background-color: rgba(87, 236, 241, 0.07);")
+        h2.mb-4(style="color: crimson;") Users List
         table.table.table-bordered.table-striped
           thead
             tr
               th role 
               th username
               th age
+              
           tbody
             if users && users.length
               each user in users

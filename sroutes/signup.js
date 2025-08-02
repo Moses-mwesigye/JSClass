@@ -3,8 +3,8 @@ const router = express.Router()
 
 
 
-router.get('/signup', (req, res)=>{
-    res.render('signup')
+router.get('/index', (req, res)=>{
+    res.render('index')
 })
 
 

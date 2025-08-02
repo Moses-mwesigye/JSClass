@@ -6,19 +6,19 @@ block content
       .col-md-6
         .card.border-success(style="background-color: rgba(24, 49, 53, 0.068);")
           .card-header
-            h4(style="color: #0dcaf0;") Admin - Total Feeds
+            h4(style="color: #0dcaf0;") Total stock
           .card-body
             table.table.table-bordered
               thead
                 tr
-                  th(style="color: darkblue;") Total Feeds
-                  th(style="color: darkblue;") Kgs
+                  th(style="color: darkblue;") Total stock
+                  th(style="color: darkblue;") quantity
               tbody#feedsTableBody
                 // Rows will be filled by JS
             // Total Kgs Display
             .mt-3
               h5(style="color: chartreuse;")
-                | Total Kgs: 
+                | Total stock: 
                 span#totalFeedsKgs 0
   script.
     // --- FEEDS TABLE (MongoDB, READ-ONLY) ---

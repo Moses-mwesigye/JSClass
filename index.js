@@ -1,5 +1,7 @@
  //(1)Importing the dependencies
 const express = require('express')
+const app = express()
+
 const routes= require('./sroutes/routes')
 const custf = require('./sroutes/custform')
 const salesrep = require('./sroutes/salesrep')
@@ -18,6 +20,36 @@ const signup2 = require('./sroutes/signup2')
 const paymentsRoutes = require('./sroutes/payments');
 const adminRoutes = require('./sroutes/admin');
 
+const mongoose = require('mongoose')
+
+
+
+
+//(2)Instantiations
+
+const port = 4000
+ 
+
+// ... later in your code
+
+
+
+//(3)Configurations
+path = require('path')
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname ,'views'))
+
+//DATABASE
+
+mongoose.connect('mongodb+srv://mwesigyemoses256:emroCRssdr5hGrN0@cluster0.ofh4r1m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connection.once('open', ()=>{
+    console.log('Mongoose Connection Open')
+})
+.on('error', (error)=>{
+    console.log(`connection error${error.message}`)
+})
+
+
 
 // Passport local strategy setup
 passport.use(User.createStrategy());
@@ -27,36 +59,12 @@ passport.deserializeUser(User.deserializeUser());
 
 const session = require('express-session');
 const expressSession = session({
-  secret: 'marshal',
+  secret: 'mwesigye',
   resave: false,
   saveUninitialized: false
 });
 
 
-//DATABASE
-const mongoose = require('mongoose')
-// const { error } = require('console') // Removed to avoid variable conflict
-path = require('path')
-require('dotenv').config()
-
-//(2)Instantiations
-const app = express()
-const port = 4000
-
-//(3)Configurations
-
-app.set('view engine', 'pug')
-app.set('views', path.join(__dirname ,'views'))
-
-//database
-
-mongoose.connect(process.env.DATABASE)
-mongoose.connection.once('open', ()=>{
-    console.log('Mongoose Connection Open')
-})
-.on('error', (error)=>{
-    console.log(`connection error${error.message}`)
-})
 
 
 //(4)Middleware
@@ -71,8 +79,7 @@ app.use(passport.session());
 
 
 //app is a method of express library
-//app.METHOD(PATH, HANDLER);
-//get means it returns info
+
 app.use('/', chicsorder)
 app.use('/', salesrep)
 app.use('/', custf)
@@ -97,10 +104,5 @@ app.use((req, res) =>{
 
 
 
-
-
-
-
-//(6)Bootstrapping Server
 //always the last line
 app.listen(port, () => console.log(`I am connected to port ${port}`)) 

@@ -1,15 +1,18 @@
 extends layout.pug
 
 block content
+
   .container.mt-5
-    h2.mb-4 All Payments
+  .card.border-info(style="background-color: rgba(87, 236, 241, 0.07);")
+  
     table.table.table-bordered.table-striped
+      h4(style="color: crimson;") PAYMENTS
       thead
         tr
           th Name
           th Amount
           th Method
-          th Notes
+          th Chick Type
           th Date
       tbody
         if payments && payments.length

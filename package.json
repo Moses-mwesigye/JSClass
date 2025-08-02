@@ -25,5 +25,8 @@
     "passport-local-mongoose": "^8.0.0",
     "pug": "^3.0.3",
     "session": "^0.1.0"
+  },
+  "devDependencies": {
+    "pug-cli": "^1.0.0-alpha6"
   }
 }

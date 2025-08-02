@@ -3,7 +3,7 @@ const router = express.Router()
 const Feed = require('../models/feedsmodel');
 
 
-router.get('/feeds', (req, res)=>{
+router.get('/stock', (req, res)=>{
     res.render('feeds')
 })
 

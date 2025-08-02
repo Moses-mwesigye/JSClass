@@ -1,27 +1,157 @@
-extends layout.pug
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Young4Chicks - Customers Dashboard
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+    link(rel="stylesheet", href="/young-for-chicks/css/bootstrap-5.3.6/css/bootstrap.css")
+    link(rel="stylesheet", href="css/bootstrap-5.3.6-dist/css/bootstrap.css")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css", rel="stylesheet")
+    style.
+      .hexagon {
+        position: relative;
+        width: 110px;
+        height: 60px;
+        background: rgba(24, 49, 53, 0.15);
+        margin: 10px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #17a2b8;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        clip-path: polygon(
+          25% 5%, 75% 5%,
+          100% 50%,
+          75% 95%, 25% 95%,
+          0% 50%
+        );
+        transition: transform 0.2s;
+      }
+      .hexagon:hover {
+        transform: scale(1.07);
+        box-shadow: 4px 16px rgba(0,255,255,0.15);
+      }
+      .hex-content {
+        text-align: center;
+        color: #fff;
+        width: 100%;
+      }
+      .hex-content i {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 1.3rem;
+      }
+      .hex-content div {
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      /* Zigzag pattern */
+      .zigzag-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        width: 100%;
+        margin: 0;
+        padding: 0 2vw;
+      }
+      .zigzag-row .zigzag-col {
+        flex: 1 1 0;
+        display: flex;
+        justify-content: center;
+        margin-bottom: -18px; /* overlap hexagons vertically */
+      }
+      .zigzag-row.even {
+        margin-left: 6vw;
+      }
+      @media (max-width: 991px) {
+        .zigzag-row {
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 0;
+        }
+        .zigzag-row.even {
+          margin-left: 0;
+        }
+      }
+      @media (max-width: 767px) {
+        .zigzag-row, .zigzag-row.even {
+          flex-wrap: wrap;
+          margin-left: 0 !important;
+          margin-bottom: 0;
+          padding: 0;
+        }
+        .zigzag-row .zigzag-col {
+          margin-bottom: 0;
+        }
+        .hexagon {
+          width: 90px;
+          height: 48px;
+        }
+      }
+      .zigzag-menu-fixed {
+        position: sticky;
+        top: 0;
+        z-index: 1050;
+        background: black;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      /* Custom style for centering table content within its card body */
+      .center-table-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center horizontally */
+        justify-content: center; /* Center vertically if space allows */
+        width: 100%;
+      }
+  body(style="background-color: darkgreen;")
+    // Zigzag Hexagon Navigation (fixed at the top)
+    .zigzag-menu-fixed
+      .w-100.my-4
+      .zigzag-row.odd
+        .zigzag-col
+          a.text-decoration-none(href="/custview")
+            .hexagon
+              .hex-content
+                div(style="color: rgb(0, 255, 255);") HOME
+                  .zigzag-menu-fixed
+      .w-100.my-4
+      .zigzag-row.odd
+        .zigzag-col
+          a.text-decoration-none(href="/custreg")
+            .hexagon
+              .hex-content
+                i.fa.fa-list(style="color:cyan;font-size:0.95rem;")
+                div(style="color: rgb(0, 255, 255);") REGISTER
+        .zigzag-col
+          a.text-decoration-none(href="/")
+            .hexagon
+              .hex-content
+                i.fa.fa-sign-out-alt(style="color: #0d6efd;")
+                div(style="color: #0d6efd;") LOGOUT
+    script(src="css/bootstrap-5.3.6/js/bootstrap.bundle.js")
+    script(src="/young-for-chicks/js/include.js")
 
-block content
-  div(style='color: white; max-width: 400px; margin: 0 auto;')
-    h1 Customer form
-    form(action='/custreg' method='post')
-      label(for='fname') Customer First name:
-      br
-      input#fname(type='text', name='fname', style='background: #222; color: #fff; border: 1px solid #888;')
-      br
-      label(for='lname')  Customer Last name:
-      br
-      input#lname(type='text', name='lname', style='background: #222; color: #fff; border: 1px solid #888;')
-      br
-      label(for='lnin')  Customer NIN:
-      br
-      input#lname(type='text', name='lnin', style='background: #222; color: #fff; border: 1px solid #888;')
-      br
-      label(for='lnombre')  Customer phoneNumber:
-      br
-      input#lname(type='text', name='lnombre', style='background: #222; color: #fff; border: 1px solid #888;')
-      br
-      label(for='returning')  Returning farmer
-      input#broiler(type='checkbox', name='broiler')
-      br
-      br
-      input.btn.btn-info(type='submit', value='Submit', style='color: #fff;')
+form(action='/custreg' method='post')
+  label(for='fname', style='color: lightblue;') Customer First name:
+  br
+  input#fname(type='text', name='fname', style='background: #222; color: #fff; border: 1px solid #888;')
+  br
+  label(for='lname', style='color: lightblue;') Customer Last name:
+  br
+  input#lname(type='text', name='lname', style='background: #222; color: #fff; border: 1px solid #888;')
+  br
+  label(for='nin', style='color: lightblue;') Customer NIN:
+  br
+  input#nin(type='text', name='nin', style='background: #222; color: #fff; border: 1px solid #888;')
+  br
+  label(for='phoneNumber', style='color: lightblue;') Customer phoneNumber:
+  br
+  input#phoneNumber(type='text', name='phoneNumber', style='background: #222; color: #fff; border: 1px solid #888;')
+  br
+  label(for='returningFarmer', style='color: lightblue;') Returning farmer
+  input#returningFarmer(type='checkbox', name='returningFarmer')
+  br
+  br
+  input.btn.btn-info(type='submit', value='Submit', style='color: #fff;')

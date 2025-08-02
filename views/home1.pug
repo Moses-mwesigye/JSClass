@@ -1,5 +1,3 @@
-
-//- PUG TEMPLATE VERSION
 doctype html
 html(lang="en")
   head
@@ -103,53 +101,46 @@ html(lang="en")
     // Zigzag Hexagon Navigation (fixed at the top)
     .zigzag-menu-fixed
       .w-100.my-4
-      .zigzag-row.odd
-        .zigzag-col
-          a.text-decoration-none(href="/dashboard")
-            .hexagon
-              .hex-content
-                i.fa.fa-home(style="color: rgb(0, 255, 255);")
-                div(style="color: rgb(0, 255, 255);") HOME
-        .zigzag-col
-          a.text-decoration-none(href="/feeds")
-            .hexagon
-              .hex-content
-                i.fa.fa-cutlery(style="color: magenta;")
-                div(style="color: magenta;") FEEDS
-        .zigzag-col
-          a.text-decoration-none(href="/custreg")
-            .hexagon
-              .hex-content
-                i.fa.fa-users(style="color: chartreuse;")
-                div(style="color: chartreuse;") FARMERS
-        .zigzag-col
-          a.text-decoration-none(href="/paymentslist")
-            .hexagon
-              .hex-content
-                i.fa.fa-credit-card(style="color: orange;")
-                div(style="color: orange;") PAYMENTS
-      .zigzag-row.even
-        .zigzag-col
-          a.text-decoration-none(href="/requests")
-            .hexagon
-              .hex-content
-                i.fa.fa-list(style="color:cyan;font-size:0.95rem;")
-                div(style="color: rgb(159, 255, 49);") REQUESTS
-        .zigzag-c
-          a.text-decoration-none(href="/userslist")
-            .hexagon
-              .hex-content
-                i.fa.fa-users(style="color: crimson;")
-                div(style="color: crimson;") USERS
-        .zigzag-col
-          a.text-decoration-none(href="/")
-            .hexagon
-              .hex-content
-                i.fa.fa-sign-out-alt(style="color: #0d6efd;")
-                div(style="color: #0d6efd;") LOGOUT
+        .zigzag-row.odd
+          .zigzag-col
+            a.text-decoration-none(href="/dashboard")
+              .hexagon
+                .hex-content
+                  i.fa.fa-home(style="color: rgb(0, 255, 255);")
+                  div(style="color: rgb(0, 255, 255);") HOME
+          .zigzag-col
+            a.text-decoration-none(href="/stock")
+              .hexagon
+                .hex-content
+                  i.fa.fa-cutlery(style="color: magenta;")
+                  div(style="color: magenta;") STOCK
+          .zigzag-col
+            a.text-decoration-none(href="/paymentslist")
+              .hexagon
+                .hex-content
+                  i.fa.fa-credit-card(style="color: orange;")
+                  div(style="color: orange;") PAID
+        .zigzag-row.even
+          .zigzag-col
+            a.text-decoration-none(href="/custview")
+              .hexagon
+                .hex-content
+                  i.fa.fa-users(style="color: chartreuse;")
+                  div(style="color: rgb(159, 255, 49);") FARMER
+          .zigzag-col
+            a.text-decoration-none(href="/userslist")
+              .hexagon
+                .hex-content
+                  i.fa.fa-users(style="color: crimson;")
+                  div(style="color: crimson;") USERS
+          .zigzag-col
+            a.text-decoration-none(href="/")
+              .hexagon
+                .hex-content
+                  i.fa.fa-sign-out-alt(style="color: #0d6efd;")
+                  div(style="color: #0d6efd;") LOGOUT
     script(src="css/bootstrap-5.3.6/js/bootstrap.bundle.js")
     script(src="/young-for-chicks/js/include.js")
-    h4(style="color: aqua;") NOTE: Register Farmer Before Placing Any Request OR they send Id to sales@y4c.com then send them the customer page link
     //- Admin table and add form removed as requested
     .container.mt-4
       .row
@@ -159,7 +150,7 @@ html(lang="en")
               h4(style="color: aqua;") Chicken Requests
               button.btn.btn-success.btn-sm(type="button" onclick="showAddForm()")
                 i.fa.fa-plus
-                |  Add
+                |  Add
             .card-body
               // Add Form (hidden by default)
               form#addRequestForm.mb-3(style="display:none;")

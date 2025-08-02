@@ -37,7 +37,7 @@ router.post('/login', (req, res, next) => {
       } else if (user.role === 'salesrep') {
         return res.redirect('/dashboard');
       } else {
-        return res.redirect('/signup');
+        return res.redirect('/index');
       }
     });
   })(req, res, next);
