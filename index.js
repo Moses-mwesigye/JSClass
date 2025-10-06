@@ -1,5 +1,6 @@
  //(1)Importing the dependencies
 const express = require('express')
+const ngrok = require('@ngrok/ngrok');
 const app = express()
 
 const routes= require('./sroutes/routes')
@@ -22,7 +23,7 @@ const adminRoutes = require('./sroutes/admin');
 
 const mongoose = require('mongoose')
 
-
+require('dotenv').config()
 
 
 //(2)Instantiations
@@ -41,7 +42,7 @@ app.set('views', path.join(__dirname ,'views'))
 
 //DATABASE
 
-mongoose.connect('mongodb+srv://mwesigyemoses256:emroCRssdr5hGrN0@cluster0.ofh4r1m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://moses:3668nipple@cluster0.sfuivwu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 mongoose.connection.once('open', ()=>{
     console.log('Mongoose Connection Open')
 })
@@ -105,4 +106,13 @@ app.use((req, res) =>{
 
 
 //always the last line
-app.listen(port, () => console.log(`I am connected to port ${port}`)) 
+app.listen(port, () => {
+	console.log(`Express server running on port ${port}`);
+	ngrok.connect({
+	  addr: port,
+	  authtoken: process.env.NGROK_AUTHTOKEN,
+	  domain: 'violaceous-bifilarly-marlon.ngrok-free.app'
+	})
+		.then(listener => console.log(`Ingress established at: ${listener.url()}`))
+		.catch(err => console.error('ngrok error:', err.message));
+});

@@ -13,6 +13,7 @@
   "author": "moses",
   "license": "ISC",
   "dependencies": {
+    "@ngrok/ngrok": "^1.5.2",
     "bcryptjs": "^3.0.2",
     "connect-ensure-login": "^0.1.1",
     "dotenv": "^17.2.0",
